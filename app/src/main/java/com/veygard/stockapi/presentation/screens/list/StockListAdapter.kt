@@ -1,6 +1,7 @@
 package com.veygard.stockapi.presentation.screens.list
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,7 +19,7 @@ class StockListAdapter(
 
 
     interface Listener {
-        fun itemClick(item: Int)
+        fun itemClick(itemId: Int)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StockItemViewHolder {
@@ -44,6 +45,7 @@ class StockListAdapter(
                 tvPrice.text = context.getString(R.string.stock_item_price, item.price.toString())
                 tvRemaining.text = item.remainingStocks.toString()
                 stockItemContainer.setOnClickListener {
+                    Log.d("testing_something","item: ${item.checkName}")
                     listener.itemClick(item.id)
                 }
             }

@@ -3,23 +3,23 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/nav_graph_root"
-        app:startDestination="@id/stockList">
+        app:startDestination="@id/stockListFragment">
 
     <fragment
-            android:id="@+id/stockList"
+            android:id="@+id/stockListFragment"
             android:name="com.veygard.stockapi.presentation.screens.list.StockList"
             android:label="fragment_stock_list"
             tools:layout="@layout/fragment_stock_list" >
         <action
                 android:id="@+id/action_stockList_to_stockItem"
-                app:destination="@id/stockItem" />
+                app:destination="@id/stockItemFragment" />
         <action
                 android:id="@+id/action_stockList_to_errorFragment"
                 app:destination="@id/errorFragment" />
     </fragment>
     <fragment
-            android:id="@+id/stockItem"
-            android:name="com.veygard.stockapi.presentation.screens.item.StockItem"
+            android:id="@+id/stockItemFragment"
+            android:name="com.veygard.stockapi.presentation.screens.item.StockItemFragment"
             android:label="fragment_stock_item"
             tools:layout="@layout/fragment_stock_item" />
     <fragment

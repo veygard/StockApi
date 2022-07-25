@@ -3,9 +3,10 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".presentation.screens.item.StockItem">
+        tools:context=".presentation.screens.item.StockItemFragment">
 
     <TextView
+            android:id="@+id/item_test"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="item fragment " />

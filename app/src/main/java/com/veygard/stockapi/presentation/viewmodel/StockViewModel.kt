@@ -35,4 +35,6 @@ class StockViewModel @Inject constructor(val getStocksUseCase: GetStocksUseCase)
             }
         }
     }
+
+    fun getItemById(id:Int?): StockItem?= originalList?.single { it.id == id }
 }

@@ -4,12 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.veygard.stockapi.R
 import com.veygard.stockapi.databinding.FragmentStockListBinding
+import com.veygard.stockapi.presentation.screens.item.StockItemFragment.Companion.STOCK_ITEM_ID_TAG
 import com.veygard.stockapi.presentation.viewmodel.StockStateVM
 import com.veygard.stockapi.presentation.viewmodel.StockViewModel
 
@@ -49,8 +52,13 @@ class StockList : Fragment() {
         binding.stocksRecyclerHolder.layoutManager = reversLayoutManager
         adapter = StockListAdapter(
             listener = object : StockListAdapter.Listener {
-                override fun itemClick(item: Int) {
-                    
+                override fun itemClick(itemId: Int) {
+                    findNavController().navigate(
+                        R.id.action_stockList_to_stockItem,
+                        bundleOf(
+                            STOCK_ITEM_ID_TAG to itemId
+                        )
+                    )
                 }
             },
             context = requireContext()
