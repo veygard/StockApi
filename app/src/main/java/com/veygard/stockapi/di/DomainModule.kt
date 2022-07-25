@@ -3,7 +3,7 @@ package com.veygard.stockapi.di
 import com.veygard.stockapi.data.api.StockApi
 import com.veygard.stockapi.domain.repository.StockRepository
 import com.veygard.stockapi.domain.repository.StockRepositoryImpl
-import com.veygard.stockapi.domain.use_case.GetStocksUseCase
+import com.veygard.stockapi.domain.usecase.GetStocksUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
