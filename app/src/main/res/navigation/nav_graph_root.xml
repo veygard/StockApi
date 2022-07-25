@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/nav_graph_root"
+        app:startDestination="@id/stockList">
+
+    <fragment
+            android:id="@+id/stockList"
+            android:name="com.veygard.stockapi.presentation.screens.list.StockList"
+            android:label="fragment_stock_list"
+            tools:layout="@layout/fragment_stock_list" >
+        <action
+                android:id="@+id/action_stockList_to_stockItem"
+                app:destination="@id/stockItem" />
+        <action
+                android:id="@+id/action_stockList_to_errorFragment"
+                app:destination="@id/errorFragment" />
+    </fragment>
+    <fragment
+            android:id="@+id/stockItem"
+            android:name="com.veygard.stockapi.presentation.screens.item.StockItem"
+            android:label="fragment_stock_item"
+            tools:layout="@layout/fragment_stock_item" />
+    <fragment
+            android:id="@+id/errorFragment"
+            android:name="com.veygard.stockapi.presentation.screens.error.ErrorFragment"
+            android:label="fragment_error"
+            tools:layout="@layout/fragment_error" />
+</navigation>
