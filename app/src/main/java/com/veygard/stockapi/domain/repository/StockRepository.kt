@@ -1,7 +1,7 @@
 package com.veygard.stockapi.domain.repository
 
-import okhttp3.ResponseBody
+import com.veygard.stockapi.domain.response.StockRepositoryResponse
 
 interface StockRepository {
-    suspend fun getStock(): ResponseBody?
+    suspend fun getStock(): StockRepositoryResponse
 }

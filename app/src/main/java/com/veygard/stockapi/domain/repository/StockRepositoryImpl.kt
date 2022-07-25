@@ -1,11 +1,18 @@
 package com.veygard.stockapi.domain.repository
 
 import com.veygard.stockapi.data.api.StockApi
-import okhttp3.ResponseBody
-import retrofit2.Response
+import com.veygard.stockapi.domain.response.StockRepositoryResponse
 
 class StockRepositoryImpl(private val stockApi: StockApi) : StockRepository {
-    override suspend fun getStock(): ResponseBody? {
-        return stockApi.getStocks().body()
+    override suspend fun getStock(): StockRepositoryResponse {
+        val call = stockApi.getStocks()
+        return when {
+            call.isSuccessful -> {
+                StockRepositoryResponse.Success(emptyList())
+            }
+            else -> {
+                StockRepositoryResponse.Error
+            }
+        }
     }
 }
