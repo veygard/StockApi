@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">StockApi</string>
+    <string name="stock_list_main_title">Остатки на скаде:</string>
+    <string name="search_field_placeholder">Введите название товара</string>
+    <string name="cancel_button_title">Отмена</string>
+
+    <string name="stock_item_barcode">Код: %1$s</string>
+    <string name="stock_item_price">%1$s ₽</string>
+
 </resources>

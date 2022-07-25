@@ -3,10 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/_AndroidStudioProjects/_pet/StockApi/app/src/main/res/drawable/bg_grey_rounded.xml" value="0.161" />
+        <entry key="..\:/_AndroidStudioProjects/_pet/StockApi/app/src/main/res/drawable/bg_rounded.xml" value="0.161" />
+        <entry key="..\:/_AndroidStudioProjects/_pet/StockApi/app/src/main/res/drawable/bg_white_rounded.xml" value="0.161" />
+        <entry key="..\:/_AndroidStudioProjects/_pet/StockApi/app/src/main/res/drawable/ic_search.xml" value="0.161" />
+        <entry key="..\:/_AndroidStudioProjects/_pet/StockApi/app/src/main/res/drawable/none.xml" value="0.161" />
         <entry key="..\:/_AndroidStudioProjects/_pet/StockApi/app/src/main/res/layout/activity_main.xml" value="0.2740628166160081" />
         <entry key="..\:/_AndroidStudioProjects/_pet/StockApi/app/src/main/res/layout/fragment_error.xml" value="0.2740628166160081" />
         <entry key="..\:/_AndroidStudioProjects/_pet/StockApi/app/src/main/res/layout/fragment_stock_item.xml" value="0.2672239108409321" />
         <entry key="..\:/_AndroidStudioProjects/_pet/StockApi/app/src/main/res/layout/fragment_stock_list.xml" value="0.2740628166160081" />
+        <entry key="..\:/_AndroidStudioProjects/_pet/StockApi/app/src/main/res/layout/item_ stock.xml" value="0.18704710144927536" />
+        <entry key="..\:/_AndroidStudioProjects/_pet/StockApi/app/src/main/res/layout/item_stock.xml" value="0.25555555555555554" />
       </map>
     </option>
   </component>
