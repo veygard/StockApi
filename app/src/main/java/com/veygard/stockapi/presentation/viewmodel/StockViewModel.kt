@@ -18,6 +18,7 @@ class StockViewModel @Inject constructor(val getStocksUseCase: GetStocksUseCase)
     private var originalList: List<StockItem>? = null
     private val _state = MutableLiveData<StockStateVM?>(null)
     val state: LiveData<StockStateVM?> = _state
+    var requestIsProcessing: Boolean? = null
 
     init {
         getStocks()
@@ -26,6 +27,7 @@ class StockViewModel @Inject constructor(val getStocksUseCase: GetStocksUseCase)
     fun getStocks() {
         viewModelScope.launch {
             _state.value = StockStateVM.Loading
+            requestIsProcessing = true
             when (val result = getStocksUseCase.execute()) {
                 is Success -> {
                     originalList = result.stocks
@@ -33,8 +35,11 @@ class StockViewModel @Inject constructor(val getStocksUseCase: GetStocksUseCase)
                 }
                 Error -> _state.value = StockStateVM.Error
             }
+            requestIsProcessing = null
         }
     }
 
-    fun getItemById(id:Int?): StockItem?= originalList?.single { it.id == id }
+    fun getItemById(id: Int?): StockItem? = originalList?.single { it.id == id }
+
+    fun stockAreEmpty() = originalList.isNullOrEmpty() && requestIsProcessing == null
 }

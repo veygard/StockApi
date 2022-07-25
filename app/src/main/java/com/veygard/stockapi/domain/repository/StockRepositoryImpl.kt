@@ -12,19 +12,23 @@ import com.veygard.stockapi.domain.response.StockRepositoryResponse
 
 class StockRepositoryImpl(private val stockApi: StockApi) : StockRepository {
     override suspend fun getStock(): StockRepositoryResponse {
-        val call = stockApi.getStocks()
-        return when {
-            call.isSuccessful -> {
-                return call.body()?.let {
-                    StockRepositoryResponse.Success(getStockItemsFromApiBody(it))
-                }
-                    ?: kotlin.run {
-                        StockRepositoryResponse.Error
+        try {
+            val call = stockApi.getStocks()
+            return when {
+                call.isSuccessful -> {
+                    return call.body()?.let {
+                        StockRepositoryResponse.Success(getStockItemsFromApiBody(it))
                     }
+                        ?: kotlin.run {
+                            StockRepositoryResponse.Error
+                        }
+                }
+                else -> {
+                    StockRepositoryResponse.Error
+                }
             }
-            else -> {
-                StockRepositoryResponse.Error
-            }
+        } catch (e: Exception){
+            return StockRepositoryResponse.Error
         }
     }
 

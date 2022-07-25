@@ -1,6 +1,7 @@
 package com.veygard.stockapi.presentation.screens.list
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,12 +33,19 @@ class StockList : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         observeViewModel()
         initAdapter()
+        if(viewModel.stockAreEmpty()) {
+            Log.d("testing_something","stockAreEmpty")
+            viewModel.getStocks()
+        }
     }
 
     private fun observeViewModel() {
         viewModel.state.observe(viewLifecycleOwner) { state ->
             when (state) {
-                StockStateVM.Error -> {}
+                StockStateVM.Error -> {
+                    Log.d("testing_something","StockStateVM.Error")
+                    findNavController().navigate(R.id.action_stockListFragment_to_errorFragment)
+                }
                 is StockStateVM.GotData -> {
                     adapter?.submitList(state.stocks)
                 }
@@ -54,7 +62,7 @@ class StockList : Fragment() {
             listener = object : StockListAdapter.Listener {
                 override fun itemClick(itemId: Int) {
                     findNavController().navigate(
-                        R.id.action_stockList_to_stockItem,
+                        R.id.action_stockListFragment_to_stockItemFragment,
                         bundleOf(
                             STOCK_ITEM_ID_TAG to itemId
                         )

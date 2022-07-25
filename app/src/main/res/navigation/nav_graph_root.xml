@@ -11,11 +11,11 @@
             android:label="fragment_stock_list"
             tools:layout="@layout/fragment_stock_list" >
         <action
-                android:id="@+id/action_stockList_to_stockItem"
-                app:destination="@id/stockItemFragment" />
-        <action
-                android:id="@+id/action_stockList_to_errorFragment"
+                android:id="@+id/action_stockListFragment_to_errorFragment"
                 app:destination="@id/errorFragment" />
+        <action
+                android:id="@+id/action_stockListFragment_to_stockItemFragment"
+                app:destination="@id/stockItemFragment" />
     </fragment>
     <fragment
             android:id="@+id/stockItemFragment"
