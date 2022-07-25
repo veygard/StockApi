@@ -7,5 +7,5 @@ data class StockItem(
     val checkName: String? = null,
     val price: Double? = null,
     val remainingStocks: Double? = null,
-    val attributes: List<StockItemAttribute>? = null
+    val attributes: List<StockAttribute>? = null
 )

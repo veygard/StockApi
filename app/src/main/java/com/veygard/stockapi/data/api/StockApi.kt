@@ -6,5 +6,5 @@ import retrofit2.http.GET
 
 interface StockApi {
     @GET("test/catalog.spr")
-    suspend fun getStocks(): Response<ResponseBody>
+    suspend fun getStocks(): Response<String>
 }
