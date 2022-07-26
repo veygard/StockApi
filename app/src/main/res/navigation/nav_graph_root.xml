@@ -7,7 +7,7 @@
 
     <fragment
             android:id="@+id/stockListFragment"
-            android:name="com.veygard.stockapi.presentation.screens.list.StockList"
+            android:name="com.veygard.stockapi.presentation.screens.list.StockListFragment"
             android:label="fragment_stock_list"
             tools:layout="@layout/fragment_stock_list" >
         <action

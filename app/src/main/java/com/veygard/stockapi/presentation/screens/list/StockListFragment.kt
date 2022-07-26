@@ -1,7 +1,6 @@
 package com.veygard.stockapi.presentation.screens.list
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,9 +18,11 @@ import com.veygard.stockapi.presentation.screens.item.StockItemFragment.Companio
 import com.veygard.stockapi.presentation.screens.list.adapters.StockListAdapter
 import com.veygard.stockapi.presentation.viewmodel.StockStateVM
 import com.veygard.stockapi.presentation.viewmodel.StockViewModel
+import com.veygard.stockapi.util.toggleSearchViewIconColor
+import com.veygard.stockapi.util.toggleVisibility
 
 
-class StockList : Fragment() {
+class StockListFragment : Fragment() {
 
     private val viewModel: StockViewModel by activityViewModels()
     private val binding: FragmentStockListBinding by viewBinding()
@@ -34,34 +35,27 @@ class StockList : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        if (viewModel.stockAreEmpty()) viewModel.getStocks()
         observeViewModel()
         initAdapter()
-        if (viewModel.stockAreEmpty()) {
-            Log.d("testing_something", "stockAreEmpty")
-            viewModel.getStocks()
-        }
+        cancelButtonListener()
+        searchViewListener()
     }
 
     private fun observeViewModel() {
         viewModel.state.observe(viewLifecycleOwner) { state ->
             when (state) {
                 StockStateVM.Error -> {
-                    Log.d("testing_something", "StockStateVM.Error")
                     findNavController().navigate(R.id.action_stockListFragment_to_errorFragment)
                 }
                 is StockStateVM.GotData -> {
                     adapter?.submitList(state.stocks.toItemShimmerList())
                 }
                 StockStateVM.Loading -> {
+                    val shimmers: MutableList<StockItemWithShimmer> =
+                        MutableList(10) { StockItemWithShimmer.Shimmer }
                     adapter?.submitList(
-                        listOf(
-                            StockItemWithShimmer.Shimmer,
-                            StockItemWithShimmer.Shimmer,
-                            StockItemWithShimmer.Shimmer,
-                            StockItemWithShimmer.Shimmer,
-                            StockItemWithShimmer.Shimmer,
-                            StockItemWithShimmer.Shimmer
-                        )
+                        shimmers
                     )
                 }
                 else -> {}
@@ -86,5 +80,36 @@ class StockList : Fragment() {
             context = requireContext()
         )
         binding.stocksRecyclerHolder.adapter = adapter
+    }
+
+    private fun cancelButtonListener() {
+        binding.cancelButton.setOnClickListener {
+            binding.searchBar.setQuery("", false)
+            binding.searchBar.clearFocus()
+        }
+    }
+
+    private fun searchViewListener() {
+        binding.searchBar.queryHint = resources.getString(R.string.search_field_placeholder)
+        binding.searchBar.setOnQueryTextListener(object :
+            android.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextChange(text: String): Boolean {
+                viewModel.filterItemsBySearch(text)
+                toggleVisibility(text.isEmpty(), binding.cancelButton)
+                toggleSearchViewIconColor(text.isNotEmpty(), requireContext(), binding.searchIcon)
+                return false
+            }
+
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                viewModel.filterItemsBySearch(query ?: "")
+                toggleVisibility(query?.isEmpty() ?: true, binding.cancelButton)
+                toggleSearchViewIconColor(
+                    query?.isNotEmpty() ?: false,
+                    requireContext(),
+                    binding.searchIcon
+                )
+                return false
+            }
+        })
     }
 }

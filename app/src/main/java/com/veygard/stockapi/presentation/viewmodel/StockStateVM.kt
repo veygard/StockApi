@@ -6,4 +6,5 @@ sealed class StockStateVM {
     data class GotData(val stocks: List<StockItem>) : StockStateVM()
     object Loading : StockStateVM()
     object Error : StockStateVM()
+    object NothingFound : StockStateVM()
 }

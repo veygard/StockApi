@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class StockViewModel @Inject constructor(val getStocksUseCase: GetStocksUseCase) : ViewModel() {
+class StockViewModel @Inject constructor(private val getStocksUseCase: GetStocksUseCase) : ViewModel() {
 
     private var originalList: List<StockItem>? = null
     private val _state = MutableLiveData<StockStateVM?>(null)
@@ -28,7 +28,7 @@ class StockViewModel @Inject constructor(val getStocksUseCase: GetStocksUseCase)
     fun getStocks() {
         viewModelScope.launch {
             _state.value = StockStateVM.Loading
-            delay(2000)
+            delay(1500) //demonstration shimmer
             requestIsProcessing = true
             when (val result = getStocksUseCase.execute()) {
                 is Success -> {
@@ -42,6 +42,31 @@ class StockViewModel @Inject constructor(val getStocksUseCase: GetStocksUseCase)
     }
 
     fun getItemById(id: Int?): StockItem? = originalList?.single { it.id == id }
+
+    fun filterItemsBySearch(value: String) {
+        viewModelScope.launch {
+            when {
+                value.isEmpty() -> {
+                    _state.value = StockStateVM.GotData(originalList ?: emptyList())
+                }
+                else -> {
+                    val newList = originalList?.filter {
+                        it.checkName?.contains(
+                            value,
+                            ignoreCase = true
+                        ) == true
+                    }
+                        ?: emptyList()
+                    when {
+                        newList.isEmpty() -> _state.value = StockStateVM.NothingFound
+                        newList.isNotEmpty() -> {
+                            _state.value = StockStateVM.GotData(newList)
+                        }
+                    }
+                }
+            }
+        }
+    }
 
     fun stockAreEmpty() = originalList.isNullOrEmpty() && requestIsProcessing == null
 }
