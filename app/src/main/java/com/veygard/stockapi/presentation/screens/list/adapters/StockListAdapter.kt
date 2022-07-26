@@ -24,6 +24,7 @@ class StockListAdapter(
             RowType.Shimmer -> {
                 ShimmerViewHolder.from(parent)
             }
+            RowType.NothingFound -> NothingFoundViewHolder.from(parent)
         }
     }
 
@@ -34,6 +35,7 @@ class StockListAdapter(
         return when (getItem(position)) {
             is StockItemWithShimmer.Item -> 0
             StockItemWithShimmer.Shimmer -> 1
+            StockItemWithShimmer.NothingFound -> 2
         }
     }
 }

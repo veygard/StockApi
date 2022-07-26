@@ -54,9 +54,11 @@ class StockListFragment : Fragment() {
                 StockStateVM.Loading -> {
                     val shimmers: MutableList<StockItemWithShimmer> =
                         MutableList(10) { StockItemWithShimmer.Shimmer }
-                    adapter?.submitList(
-                        shimmers
-                    )
+                    adapter?.submitList(shimmers)
+                }
+                StockStateVM.NothingFound ->{
+                    val nothingFound: MutableList<StockItemWithShimmer> = mutableListOf(StockItemWithShimmer.NothingFound)
+                    adapter?.submitList(nothingFound)
                 }
                 else -> {}
             }
