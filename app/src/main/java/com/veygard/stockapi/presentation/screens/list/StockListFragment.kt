@@ -13,7 +13,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.veygard.stockapi.R
 import com.veygard.stockapi.databinding.FragmentStockListBinding
+import com.veygard.stockapi.presentation.models.StockItemWithShimmer
+import com.veygard.stockapi.presentation.models.toItemShimmerList
 import com.veygard.stockapi.presentation.screens.item.StockItemFragment.Companion.STOCK_ITEM_ID_TAG
+import com.veygard.stockapi.presentation.screens.list.adapters.StockListAdapter
 import com.veygard.stockapi.presentation.viewmodel.StockStateVM
 import com.veygard.stockapi.presentation.viewmodel.StockViewModel
 
@@ -33,8 +36,8 @@ class StockList : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         observeViewModel()
         initAdapter()
-        if(viewModel.stockAreEmpty()) {
-            Log.d("testing_something","stockAreEmpty")
+        if (viewModel.stockAreEmpty()) {
+            Log.d("testing_something", "stockAreEmpty")
             viewModel.getStocks()
         }
     }
@@ -43,13 +46,24 @@ class StockList : Fragment() {
         viewModel.state.observe(viewLifecycleOwner) { state ->
             when (state) {
                 StockStateVM.Error -> {
-                    Log.d("testing_something","StockStateVM.Error")
+                    Log.d("testing_something", "StockStateVM.Error")
                     findNavController().navigate(R.id.action_stockListFragment_to_errorFragment)
                 }
                 is StockStateVM.GotData -> {
-                    adapter?.submitList(state.stocks)
+                    adapter?.submitList(state.stocks.toItemShimmerList())
                 }
-                StockStateVM.Loading -> {}
+                StockStateVM.Loading -> {
+                    adapter?.submitList(
+                        listOf(
+                            StockItemWithShimmer.Shimmer,
+                            StockItemWithShimmer.Shimmer,
+                            StockItemWithShimmer.Shimmer,
+                            StockItemWithShimmer.Shimmer,
+                            StockItemWithShimmer.Shimmer,
+                            StockItemWithShimmer.Shimmer
+                        )
+                    )
+                }
                 else -> {}
             }
         }

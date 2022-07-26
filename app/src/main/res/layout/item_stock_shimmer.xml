@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.facebook.shimmer.ShimmerFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        app:shimmer_duration="500"
+        android:id="@+id/stock_shimmer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:id="@+id/stock_item_containerShimmer"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="16dp"
+            android:layout_margin="8dp"
+            android:elevation="4dp"
+            android:layout_centerHorizontal="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:paddingVertical="@dimen/dimen_22dp"
+                android:paddingHorizontal="@dimen/dimen_15dp"
+                android:layout_height="match_parent">
+
+            <TextView
+                    android:id="@+id/tvStockNameShimmer"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dimen_22dp"
+                    android:textAlignment="textStart"
+                    android:background="@color/shimmer_placeholder"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginEnd="@dimen/dimen_10dp"
+                    app:layout_constraintEnd_toStartOf="@id/tvRemainingShimmer"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                    android:id="@+id/tvRemainingShimmer"
+                    android:layout_width="@dimen/margin_80dp"
+                    android:layout_height="@dimen/dimen_22dp"
+                    android:background="@color/shimmer_placeholder"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/tvStockNameShimmer"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                    android:id="@+id/tvBarcodeShimmer"
+                    android:layout_width="@dimen/dimen_108dp"
+                    android:layout_height="@dimen/dimen_22dp"
+                    android:layout_marginTop="@dimen/dimen_9dp"
+                    android:background="@color/shimmer_placeholder"
+                    app:layout_constraintTop_toBottomOf="@id/tvStockNameShimmer"
+                    app:layout_constraintStart_toStartOf="@id/tvStockNameShimmer" />
+
+            <TextView
+                    android:id="@+id/tvPriceShimmer"
+                    android:layout_width="@dimen/margin_80dp"
+                    android:layout_height="@dimen/dimen_22dp"
+                    android:background="@color/shimmer_placeholder"
+                    app:layout_constraintTop_toTopOf="@id/tvBarcodeShimmer"
+                    app:layout_constraintEnd_toEndOf="@id/tvRemainingShimmer" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</com.facebook.shimmer.ShimmerFrameLayout>

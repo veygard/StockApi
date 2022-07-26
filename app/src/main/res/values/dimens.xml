@@ -210,6 +210,8 @@
     <dimen name="dimen_5dp">5dp</dimen>
     <dimen name="dimen_9dp">9dp</dimen>
     <dimen name="dimen_10dp">10dp</dimen>
+    <dimen name="dimen_14dp">10dp</dimen>
+    <dimen name="dimen_18dp">10dp</dimen>
     <dimen name="dimen_20dp">20dp</dimen>
     <dimen name="dimen_21dp">21dp</dimen>
     <dimen name="dimen_15dp">15dp</dimen>

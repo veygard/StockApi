@@ -9,6 +9,7 @@ import com.veygard.stockapi.domain.response.StockRepositoryResponse.Error
 import com.veygard.stockapi.domain.response.StockRepositoryResponse.Success
 import com.veygard.stockapi.domain.usecase.GetStocksUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -27,6 +28,7 @@ class StockViewModel @Inject constructor(val getStocksUseCase: GetStocksUseCase)
     fun getStocks() {
         viewModelScope.launch {
             _state.value = StockStateVM.Loading
+            delay(2000)
             requestIsProcessing = true
             when (val result = getStocksUseCase.execute()) {
                 is Success -> {

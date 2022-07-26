@@ -11,4 +11,7 @@
     <string name="critical_error_screen_text">Постараемся быстро починить</string>
     <string name="critical_error_screen_again">Попробовать снова</string>
     <string name="critical_error_no_internet_error">Похоже, что у вас отсутствует интернет</string>
+
+    <string name="nothing_found_title">Ничего не нашлось</string>
+    <string name="nothing_found_text">Попробуй скорректировать запрос</string>
 </resources>
