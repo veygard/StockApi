@@ -1,14 +1,170 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical"
+        android:layout_margin="8dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".presentation.screens.item.StockItemFragment">
+        android:layout_marginTop="@dimen/margin_16dp"
+        android:layout_height="match_parent">
 
-    <TextView
-            android:id="@+id/item_test"
+    <ImageButton
+            android:id="@+id/ibBackItem"
+            android:contentDescription="@string/content_description_back"
+            android:layout_width="@dimen/dimen_36dp"
+            android:layout_height="@dimen/dimen_36dp"
+            android:src="@drawable/ic_baseline_arrow_back_ios_new_24"
+            android:background="@color/transparent"
+            android:backgroundTint="@color/transparent"
+            />
+
+    <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="item fragment " />
+            android:layout_height="wrap_content"
+            android:id="@+id/stock_item_container"
+            app:cardCornerRadius="16dp"
+            android:layout_marginTop="@dimen/dimen_22dp"
+            android:layout_marginHorizontal="@dimen/margin_16dp"
+            android:elevation="4dp">
 
-</FrameLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:paddingVertical="@dimen/dimen_22dp"
+                android:paddingHorizontal="@dimen/dimen_15dp"
+                android:layout_height="match_parent">
+
+            <TextView
+                    android:id="@+id/tvBarcodeItem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="@tools:sample/lorem"
+                    style="@style/regular_text"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                    android:id="@+id/tvNameItem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="@tools:sample/lorem"
+                    style="@style/regular_text"
+                    app:layout_constraintTop_toBottomOf="@+id/tvBarcodeItem"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                    android:id="@+id/tvRemainingText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/stock_item_fragment_remaining_text"
+                    android:layout_marginTop="@dimen/dimen_18dp"
+                    style="@style/regular_text"
+                    android:textAlignment="textStart"
+                    app:layout_constraintTop_toBottomOf="@id/tvNameItem"
+                    app:layout_constraintEnd_toStartOf="@id/tvRemainingValue"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                    android:id="@+id/tvRemainingValue"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    tools:text="@tools:sample/lorem"
+                    style="@style/regular_text"
+                    android:textAlignment="textEnd"
+                    app:layout_constraintStart_toEndOf="@id/tvRemainingText"
+                    app:layout_constraintTop_toTopOf="@id/tvRemainingText"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                    android:id="@+id/tvPriceItemText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/stock_item_fragment_price_text"
+                    android:layout_marginTop="@dimen/dimen_18dp"
+                    style="@style/regular_text"
+                    android:textAlignment="textStart"
+                    app:layout_constraintTop_toBottomOf="@id/tvRemainingText"
+                    app:layout_constraintEnd_toStartOf="@id/tvPriceItemValue"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                    android:id="@+id/tvPriceItemValue"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    style="@style/regular_text"
+                    android:textAlignment="textEnd"
+                    app:layout_constraintStart_toEndOf="@id/tvPriceItemText"
+                    app:layout_constraintTop_toTopOf="@id/tvPriceItemText"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                    android:id="@+id/tvSumItemText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/stock_item_fragment_sum_text"
+                    android:layout_marginTop="@dimen/dimen_18dp"
+                    style="@style/regular_text"
+                    android:textAlignment="textStart"
+                    app:layout_constraintTop_toBottomOf="@id/tvPriceItemText"
+                    app:layout_constraintEnd_toStartOf="@id/tvSumItemValue"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                    android:id="@+id/tvSumItemValue"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    tools:text="@tools:sample/lorem"
+                    style="@style/regular_text"
+                    android:textAlignment="textEnd"
+                    app:layout_constraintStart_toEndOf="@id/tvSumItemText"
+                    app:layout_constraintTop_toTopOf="@id/tvSumItemText"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                    android:id="@+id/tvProductItemText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/stock_item_fragment_product_text"
+                    android:layout_marginTop="@dimen/dimen_18dp"
+                    style="@style/regular_text"
+                    android:textAlignment="textStart"
+                    app:layout_constraintTop_toBottomOf="@id/tvSumItemText"
+                    app:layout_constraintEnd_toStartOf="@id/tvProductItemValue"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                    android:id="@+id/tvProductItemValue"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    tools:text="@tools:sample/lorem"
+                    style="@style/regular_text"
+                    android:textAlignment="textEnd"
+                    app:layout_constraintStart_toEndOf="@id/tvProductItemText"
+                    app:layout_constraintTop_toTopOf="@id/tvProductItemText"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                    android:id="@+id/tvAlcoholItemText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/stock_item_fragment_alcohol_text"
+                    android:layout_marginTop="@dimen/dimen_18dp"
+                    style="@style/regular_text"
+                    android:textAlignment="textStart"
+                    app:layout_constraintTop_toBottomOf="@id/tvProductItemText"
+                    app:layout_constraintEnd_toStartOf="@id/tvAlcoholItemValue"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                    android:id="@+id/tvAlcoholItemValue"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    tools:text="@tools:sample/lorem"
+                    style="@style/regular_text"
+                    android:textAlignment="textEnd"
+                    app:layout_constraintStart_toEndOf="@id/tvAlcoholItemText"
+                    app:layout_constraintTop_toTopOf="@id/tvAlcoholItemText"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>

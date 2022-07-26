@@ -3,8 +3,6 @@
     <string name="search_field_placeholder">Введите название товара</string>
     <string name="cancel_button_title">Отмена</string>
 
-    <string name="stock_item_barcode">Код: %1$s</string>
-    <string name="stock_item_price">%1$s ₽</string>
 
     <string name="critical_error_screen_title">Что-то сломалось</string>
     <string name="critical_error_screen_text">Постараемся быстро починить</string>
@@ -13,4 +11,18 @@
 
     <string name="nothing_found_title">Ничего не нашлось</string>
     <string name="nothing_found_text">Попробуй скорректировать запрос</string>
+
+    <string name="stock_item_fragment_remaining_text">Остаток</string>
+    <string name="stock_item_fragment_price_text">Цена</string>
+    <string name="stock_item_fragment_sum_text">Розничная сумма</string>
+    <string name="stock_item_fragment_sum_value">%1$s₽</string>
+    <string name="stock_item_fragment_product_text">Алкогольная продукция</string>
+    <string name="stock_item_fragment_no_data">Неизвестно</string>
+    <string name="stock_item_fragment_alcohol_text">Содержание спирта</string>
+    <string name="stock_item_fragment_alcohol_value">%1$s%</string>
+    <string name="stock_item_barcode">Код: %1$s</string>
+    <string name="stock_item_price">%1$s₽</string>
+    <string name="content_description_back">back</string>
+
+
 </resources>
