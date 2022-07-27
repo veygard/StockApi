@@ -18,6 +18,7 @@ import com.veygard.stockapi.presentation.screens.item.StockItemFragment.Companio
 import com.veygard.stockapi.presentation.screens.list.adapters.StockListAdapter
 import com.veygard.stockapi.presentation.viewmodel.StockStateVM
 import com.veygard.stockapi.presentation.viewmodel.StockViewModel
+import com.veygard.stockapi.util.safeNavigate
 import com.veygard.stockapi.util.toggleSearchViewIconColor
 import com.veygard.stockapi.util.toggleVisibility
 
@@ -35,7 +36,9 @@ class StockListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if (viewModel.stockAreEmpty()) viewModel.getStocks()
+        if (viewModel.stockAreEmpty()) {
+            viewModel.getStocks()
+        }
         observeViewModel()
         initAdapter()
         cancelButtonListener()
@@ -46,7 +49,9 @@ class StockListFragment : Fragment() {
         viewModel.state.observe(viewLifecycleOwner) { state ->
             when (state) {
                 StockStateVM.Error -> {
-                    findNavController().navigate(R.id.action_stockListFragment_to_errorFragment)
+                    val action =
+                        StockListFragmentDirections.actionStockListFragmentToErrorFragment()
+                    findNavController().safeNavigate(action)
                 }
                 is StockStateVM.GotData -> {
                     adapter?.submitList(state.stocks.toItemShimmerList())
@@ -56,8 +61,9 @@ class StockListFragment : Fragment() {
                         MutableList(10) { StockItemWithShimmer.Shimmer }
                     adapter?.submitList(shimmers)
                 }
-                StockStateVM.NothingFound ->{
-                    val nothingFound: MutableList<StockItemWithShimmer> = mutableListOf(StockItemWithShimmer.NothingFound)
+                StockStateVM.NothingFound -> {
+                    val nothingFound: MutableList<StockItemWithShimmer> =
+                        mutableListOf(StockItemWithShimmer.NothingFound)
                     adapter?.submitList(nothingFound)
                 }
                 else -> {}
