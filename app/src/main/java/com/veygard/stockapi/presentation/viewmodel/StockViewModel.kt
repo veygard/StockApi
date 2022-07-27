@@ -1,5 +1,6 @@
 package com.veygard.stockapi.presentation.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -31,6 +32,7 @@ class StockViewModel @Inject constructor(private val getStocksUseCase: GetStocks
             delay(1500) //demonstration shimmer
             requestIsProcessing = true
             when (val result = getStocksUseCase.execute()) {
+
                 is Success -> {
                     originalList = result.stocks
                     _state.value = StockStateVM.GotData(result.stocks)

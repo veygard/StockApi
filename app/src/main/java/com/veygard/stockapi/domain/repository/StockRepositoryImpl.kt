@@ -10,7 +10,11 @@ import com.veygard.stockapi.domain.repository.ConstantsRepository.fullItemPatter
 import com.veygard.stockapi.domain.repository.ConstantsRepository.stockIdPattern
 import com.veygard.stockapi.domain.response.StockRepositoryResponse
 
-class StockRepositoryImpl(private val stockApi: StockApi) : StockRepository {
+class StockRepositoryImpl @JvmOverloads  constructor(
+    private val stockApi: StockApi,
+    private val something: String? = null
+) : StockRepository {
+
     override suspend fun getStock(): StockRepositoryResponse {
         try {
             val call = stockApi.getStocks()
